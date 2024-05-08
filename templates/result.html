@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block main %}
+<main id="result-main">
+    <section id="result-graph">
+        <div class="loader"></div>
+        <canvas id="graph-canvas"></canvas>
+    </section>
+    <div class="line"></div>
+    <section id="result-meta">
+        <video controls muted id="result-thermal-movie">
+            <source src="{{url_for('download_file', filename='thermal_movie.mp4')}}" type="video/mp4">
+            <p>動画を使用できるブラウザで閲覧して下さい。</p>
+        </video>
+        <div class="line"></div>
+        <div id="meta-wrapper">
+            <div id="registration-wrapper">
+                <figure>
+                    <img src="{{url_for('download_file', filename='reg_thermal.jpg')}}" alt="">
+                    <figcaption><p>遠赤外線画像</p></figcaption>
+                </figure>
+                <figure>
+                    <img src="{{url_for('download_file', filename='reg_visible.jpg')}}" alt="">
+                    <figcaption><p>可視光画像</p></figcaption>
+                </figure>
+            </div>
+            <div class="btn-wrapper">
+                <a href="{{url_for('upload')}}" class="btn">終了する</a>
+                <button id="download" class="btn">エクスポートする</button>
+            </div>
+        </div>
+    </section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{url_for('static', filename='js/script.js')}}"></script>
+{% endblock main %}
